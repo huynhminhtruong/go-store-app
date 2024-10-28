@@ -1,17 +1,22 @@
-# go-store-app
-# sub-modules
+# Main repository: 
+- go-store-app
+
+# Sub-modules:
+
 ## 1. go-store-gateway
 - GITHUB: https://github.com/huynhminhtruong/go-store-gateway.git
+
 ## 2. go-store-service
 - GITHUB: https://github.com/huynhminhtruong/go-store-services.git
-# Create sub-modules
+
+# Create sub-modules:
 Để quản lý các repository `gateway service` và `book service` như submodule trong một repository chung, bạn có thể thực hiện theo các bước sau:
 
 ### Bước 1: Tạo Repository Chung
-Tạo repository mới (ví dụ: `main-repo`) để chứa các submodule. Bạn có thể tạo trực tiếp trên GitHub, GitLab hoặc một nền tảng quản lý mã nguồn tương tự.
+Tạo repository mới (ví dụ: `main-repo`) để chứa các submodule. Bạn có thể tạo trực tiếp trên GitHub, GitLab hoặc một nền tảng quản lý mã nguồn tương tự
 
 ### Bước 2: Thêm Các Repository Làm Submodule
-Vào thư mục của repository `main-repo`, sau đó thêm các repository `gateway service` và `book service` làm submodule.
+Vào thư mục của repository `main-repo`, sau đó thêm các repository `gateway service` và `book service` làm submodule
 
 ```bash
 # Điều hướng vào thư mục main-repo
@@ -24,7 +29,7 @@ git submodule add <url_git_gateway_service> gateway-service
 git submodule add <url_git_book_service> book-service
 ```
 
-Lệnh `git submodule add` sẽ tạo một thư mục tương ứng cho mỗi submodule (`gateway-service` và `book-service`) trong `main-repo` và lưu URL của submodule trong file `.gitmodules`.
+Lệnh `git submodule add` sẽ tạo một thư mục tương ứng cho mỗi submodule (`gateway-service` và `book-service`) trong `main-repo` và lưu URL của submodule trong file `.gitmodules`
 
 ### Bước 3: Cập nhật và Đồng bộ Submodule
 Khi bạn clone hoặc cập nhật `main-repo`, bạn có thể tải và cập nhật các submodule như sau:
@@ -65,4 +70,4 @@ git rm -f <submodule_path>
 rm -rf .git/modules/<submodule_path>
 ```
 
-Với cách này, bạn có thể quản lý nhiều repository thành các submodule trong repository chung một cách dễ dàng.
+Với cách này, bạn có thể quản lý nhiều repository thành các submodule trong repository chung một cách dễ dàng
