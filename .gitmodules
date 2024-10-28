@@ -1,0 +1,6 @@
+[submodule "gateway-service"]
+	path = gateway-service
+	url = https://github.com/huynhminhtruong/go-store-gateway.git
+[submodule "store-service"]
+	path = store-service
+	url = https://github.com/huynhminhtruong/go-store-services.git
