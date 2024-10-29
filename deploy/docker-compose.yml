@@ -30,7 +30,7 @@ services:
 
   book:
     build:
-      context: ../go-store-services/book-service/src
+      context: ../go-store-services/book-service
       dockerfile: Dockerfile
     env_file:
       - .env.${ENV}
