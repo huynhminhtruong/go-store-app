@@ -1,0 +1,37 @@
+# docker-compose up -d
+services:
+  db:
+    image: postgres:12.8
+    container_name: "${DB_CONTAINER_NAME:-postgres_db_dev}"
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER:-postgres}"
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: "${POSTGRES_DB:-book-store-dev}"
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - db_data_dev:/var/lib/postgresql/data
+    networks:
+      - app_network
+    restart: always
+
+  storing:
+    build:
+      context: ./storing
+      dockerfile: Dockerfile
+    env_file:
+      - .env.${ENV}
+    container_name: "${STORING_CONTAINER_NAME:-storing_container}"
+    depends_on:
+      - db
+    ports:
+      - "${STORING_PORT:-8000}:8000"
+    networks:
+      - app_network
+    restart: always
+
+volumes:
+  db_data_dev:
+
+networks:
+  app_network:
