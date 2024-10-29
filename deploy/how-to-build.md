@@ -1,6 +1,16 @@
 # Cách tham chiếu environment variable vào docker-compose
 
-- docker-compose --env-file .env.dev up
+- docker-compose --env-file .env.dev up -d
+
+- docker-compose build [options] [SERVICE...]
+
+  - options
+    --no-cache: Bỏ qua cache khi build image
+    --pull: Tải các base images mới nhất từ registry (nếu có) trước khi build
+    --parallel: Build các dịch vụ song song để giảm thời gian chờ đợi
+
+- Sau khi build xong, bạn có thể sử dụng docker-compose up để khởi động các container từ images đã build
+- Nếu có thay đổi trong **Dockerfile** hoặc file cấu hình **docker-compose.yml**, bạn sẽ cần chạy lại **docker-compose build** để cập nhật các images
 
 # Docker logs
 
