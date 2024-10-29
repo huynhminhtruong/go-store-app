@@ -17,7 +17,7 @@ services:
 
   gateway:
     build:
-      context: ../gateway-service
+      context: ../go-store-gateway
       dockerfile: Dockerfile
     env_file:
       - .env.${ENV}
@@ -30,7 +30,7 @@ services:
 
   book:
     build:
-      context: ../store-service/book-service/src
+      context: ../go-store-services/book-service/src
       dockerfile: Dockerfile
     env_file:
       - .env.${ENV}
