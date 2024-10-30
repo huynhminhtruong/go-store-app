@@ -2,6 +2,19 @@
 
 - docker-compose --env-file .env.dev up -d
 
+# Build lại với code mới
+
+- docker-compose up --build
+
+  - Build lại các image từ Dockerfile hoặc docker-compose.yml với code mới
+  - Khởi động lại các container đang chạy bằng các image vừa build mà không cần xóa các image cũ
+
+# Xóa các docker-container cũ và restart
+
+- docker-compose up --build --force-recreate
+
+# Để build hoặc rebuild các images cho các services được chỉ định trong file docker-compose.yml mà không restart hoặc tạo lại các docker-container
+
 - docker-compose build [options] [SERVICE...]
 
   - options
