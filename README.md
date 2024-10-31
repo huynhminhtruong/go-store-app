@@ -122,6 +122,45 @@ Nếu repository của bạn không có file `.gitmodules`, bạn vẫn có th�
 
 Nếu mọi thứ đúng, tên submodule mới sẽ được cập nhật mà không cần file `.gitmodules`
 
+# Setup specific branch for submodule in main repo
+
+Trong Git, lệnh `git submodule update --recursive --remote` sẽ cập nhật các submodule về commit đã được ghi nhận trong main repo. Nếu bạn đã chuyển sang một nhánh mới trong submodule nhưng vẫn muốn giữ nhánh đó khi cập nhật từ main repo, bạn cần chỉ định nhánh mặc định cho submodule trong main repository
+
+Dưới đây là cách làm để submodule luôn sử dụng một nhánh cố định khi cập nhật:
+
+### Bước 1: Cấu hình nhánh cho submodule trong main repo
+
+1. Chuyển tới thư mục chính của main repo
+2. Mở file `.gitmodules` để chỉ định nhánh mặc định cho submodule `book-service`
+
+   ```ini
+   [submodule "path/to/book-service"]
+       path = path/to/book-service
+       url = <submodule_repo_url>
+       branch = <branch_name>
+   ```
+
+   Trong đó, `branch_name` là nhánh mà bạn muốn submodule `book-service` sẽ luôn sử dụng khi cập nhật
+
+3. Sau đó, chạy các lệnh sau để cập nhật cấu hình:
+
+   ```bash
+   git add .gitmodules
+   git commit -m "Set default branch for submodule book-service"
+   ```
+
+### Bước 2: Cập nhật submodule với nhánh chỉ định
+
+Sau khi cấu hình nhánh trong `.gitmodules`, bạn có thể chạy lệnh sau để cập nhật submodule `book-service` theo nhánh đã đặt:
+
+```bash
+git submodule update --remote --recursive
+```
+
+### Kiểm tra Submodule
+
+Submodule sẽ luôn cập nhật theo nhánh được chỉ định trong `.gitmodules`
+
 # Connect Ubuntu Server To GitHub Via SSH-Key
 
 Để kết nối từ Ubuntu tới GitHub thông qua SSH key thay vì username và password, bạn có thể thực hiện các bước sau:
