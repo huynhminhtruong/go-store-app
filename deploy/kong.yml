@@ -1,0 +1,12 @@
+# định nghĩa các service gRPC để Kong có thể gọi đến từng gRPC service
+_format_version: "2.1"
+services:
+  - name: book_service
+    url: grpc://book:8081
+    routes:
+      - name: book_route
+        paths:
+          - /book
+        protocols:
+          - http
+          - https
