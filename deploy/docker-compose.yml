@@ -9,6 +9,7 @@ services:
       - "${DB_PORT:-5432}:5432"
     volumes:
       - db_data_dev:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
     networks:
       - app_network
     restart: always
@@ -16,6 +17,12 @@ services:
   kong:
     image: kong:latest
     environment:
+      KONG_DATABASE: "on"
+      KONG_PG_HOST: "db"
+      KONG_PG_PORT: 5432
+      KONG_PG_USER: "postgres"
+      KONG_PG_PASSWORD: "postgres"
+      KONG_PG_DATABASE: "kong"
       KONG_ADMIN_LISTEN: "0.0.0.0:8001"        # admin api port
       KONG_PROXY_LISTEN: "0.0.0.0:8000, 0.0.0.0:8443 ssl" # proxy port
     env_file:
