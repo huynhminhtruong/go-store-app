@@ -120,4 +120,104 @@ Nếu repository của bạn không có file `.gitmodules`, bạn vẫn có th�
      git commit -m "Rename submodule to new_submodule_name"
      ```
 
-Nếu mọi thứ đúng, tên submodule mới sẽ được cập nhật mà không cần file `.gitmodules`.
+Nếu mọi thứ đúng, tên submodule mới sẽ được cập nhật mà không cần file `.gitmodules`
+
+# Connect Ubuntu Server To GitHub Via SSH-Key
+
+Để kết nối từ Ubuntu tới GitHub thông qua SSH key thay vì username và password, bạn có thể thực hiện các bước sau:
+
+### 1. Tạo SSH Key (Nếu Chưa Có)
+
+1. Mở terminal và chạy lệnh dưới để tạo SSH key:
+
+   ```bash
+   ssh-keygen -t ed25519 -C "your_email@example.com"
+   ```
+
+   **Ghi chú:** Thay `your_email@example.com` bằng email bạn đã dùng đăng ký trên GitHub
+
+2. Khi được hỏi về đường dẫn lưu key, bạn có thể nhấn `Enter` để lưu tại vị trí mặc định (`~/.ssh/id_ed25519`), hoặc chỉ định một vị trí khác
+
+3. Nếu bạn muốn bảo mật hơn, nhập mật khẩu cho key; nếu không, chỉ cần nhấn `Enter` để bỏ qua
+
+### 2. Thêm SSH Key Vào Agent
+
+1. Kích hoạt SSH agent:
+
+   ```bash
+   eval "$(ssh-agent -s)"
+   ```
+
+2. Thêm SSH key vào agent:
+
+   ```bash
+   ssh-add ~/.ssh/id_ed25519
+   ```
+
+### 3. Thêm SSH Key Vào GitHub
+
+1. Sao chép nội dung của SSH key vào clipboard:
+
+   ```bash
+   cat ~/.ssh/id_ed25519.pub
+   ```
+
+2. Truy cập [GitHub SSH keys settings](https://github.com/settings/keys), chọn **New SSH Key** và dán key bạn vừa sao chép vào
+
+3. Đặt tên cho key này (ví dụ: "Ubuntu laptop") và nhấn **Add SSH Key**
+
+### 4. Kiểm Tra Kết Nối SSH Với GitHub
+
+Chạy lệnh dưới để kiểm tra kết nối:
+
+```bash
+ssh -T git@github.com
+```
+
+Nếu mọi thứ cài đặt đúng, bạn sẽ thấy thông báo như:
+
+```
+Hi <username>! You've successfully authenticated, but GitHub does not provide shell access
+```
+
+### 5. Đảm Bảo Sử Dụng SSH URL Khi Clone Repository
+
+Khi clone repository, hãy dùng SSH URL thay vì HTTPS URL:
+
+```bash
+git clone git@github.com:username/repository.git
+```
+
+Với cách này, bạn có thể push và pull mà không cần nhập username và password
+
+# Đổi URL của remote từ HTTPS sang SSH như sau
+
+### 1. Kiểm Tra URL Hiện Tại của Remote
+
+Chạy lệnh dưới đây để kiểm tra xem bạn đang dùng HTTPS hay SSH:
+
+```bash
+git remote -v
+```
+
+Nếu URL có dạng `https://github.com/username/repository.git`, thì Git sẽ yêu cầu username và password. Còn nếu URL có dạng `git@github.com:username/repository.git`, nghĩa là bạn đang dùng SSH.
+
+### 2. Chuyển Đổi Từ HTTPS Sang SSH
+
+Chạy lệnh sau để thay đổi URL từ HTTPS sang SSH:
+
+```bash
+git remote set-url origin git@github.com:username/repository.git
+```
+
+**Ghi chú:** Thay `username` và `repository` bằng tên người dùng và tên repository của bạn trên GitHub
+
+### 3. Kiểm Tra Lại Remote và Push
+
+Sau khi đổi URL, bạn có thể kiểm tra lại bằng cách:
+
+```bash
+git remote -v
+```
+
+Khi đã thấy URL có dạng SSH (`git@github.com:username/repository.git`), bạn có thể thử `git push` và lần này Git sẽ sử dụng SSH key để xác thực thay vì yêu cầu username và password
