@@ -24,7 +24,7 @@ services:
       KONG_PG_PASSWORD: "postgres"
       KONG_PG_DATABASE: "kong"
       KONG_ADMIN_LISTEN: "0.0.0.0:8001"        # admin api port
-      KONG_PROXY_LISTEN: "0.0.0.0:8000, 0.0.0.0:8443 ssl" # proxy port
+      KONG_PROXY_LISTEN: "0.0.0.0:8000, 0.0.0.0:8443 http2 ssl" # proxy port
     env_file:
       - .env.${ENV}
     container_name: "${KONG_GATEWAY_CONTAINER_NAME:-kong_container}"
@@ -38,6 +38,7 @@ services:
       - book
     networks:
       - app_network
+    restart: always
 
   book:
     build:
