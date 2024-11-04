@@ -5,3 +5,8 @@
 [submodule "go-store-kong"]
 	path = go-store-kong
 	url = https://github.com/huynhminhtruong/go-store-kong.git
+	branch = main
+[submodule "go-store-gateway"]
+	path = go-store-gateway
+	url = https://github.com/huynhminhtruong/go-store-gateway.git
+	branch = main
