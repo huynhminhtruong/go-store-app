@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/go-store-gateway" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/go-store-kong" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/go-store-services" vcs="Git" />
+  </component>
+</project>
