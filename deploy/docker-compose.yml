@@ -39,6 +39,19 @@ services:
     networks:
       - app_network
     restart: always
+  
+  gateway:
+    build:
+      context: ../go-store-gateway
+      dockerfile: Dockerfile
+    env_file:
+      - .env.${ENV}
+    container_name: "${GATEWAY_CONTAINER_NAME:-gateway_container}"
+    ports:
+      - "${GATEWAY_PORT:-8081}:8081"
+    networks:
+      - app_network
+    restart: always
 
   book:
     build:
