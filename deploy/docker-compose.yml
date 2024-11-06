@@ -19,7 +19,7 @@ services:
     environment:
       KONG_DATABASE: "postgres"
       KONG_PG_HOST: "postgresql"
-      KONG_PG_PORT: 5432
+      KONG_PG_PORT: "5432"
       KONG_PG_USER: "postgres"
       KONG_PG_PASSWORD: "postgres"
       KONG_PG_DATABASE: "kong"
@@ -35,6 +35,7 @@ services:
     volumes:
       - ../go-store-kong/kong.yml:/kong.yml # mounting from go-store-kong to kong container
     depends_on:
+      - db
       - book
     networks:
       - app_network
