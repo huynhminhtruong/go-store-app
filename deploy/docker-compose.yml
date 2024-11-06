@@ -18,7 +18,7 @@ services:
     image: kong:latest
     environment:
       KONG_DATABASE: "postgres"
-      KONG_PG_HOST: "db"
+      KONG_PG_HOST: "postgresql"
       KONG_PG_PORT: 5432
       KONG_PG_USER: "postgres"
       KONG_PG_PASSWORD: "postgres"
