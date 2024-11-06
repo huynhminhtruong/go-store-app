@@ -1,26 +1,40 @@
 # global environments
 SERVICE=book-service
-KONG_DATA_CONFIG_SERVICE="paths[]=name=book-service --data url=http://gateway:8081"
-KONG_DATA_CONFIG_ROUTE_GET_LIST="paths[]=/v1/books --data methods[]=GET --data strip_path=false"
-KONG_DATA_CONFIG_ROUTE_GET_SINGLE="paths[]=/v1/books/{book_id} --data methods[]=GET --data strip_path=false"
-KONG_DATA_CONFIG_ROUTE_POST="paths[]=/v1/books --data methods[]=POST --data strip_path=false"
+KONG_REGISTER_SERVICE_URL = "url=http://gateway:8081"
+KONG_REGISTER_SERVICE_NAME = "name=book-service"
+KONG_ROUTE_PATH_GET_ONE = "paths[]=/v1/books"
+KONG_ROUTE_PATH_GET_MANY = "paths[]=/v1/books/{book_id}"
+KONG_ROUTE_PATH_POST = "paths[]=/v1/books"
+IS_STRIP_PATH = "strip_path=false"
+HTTP_GET = "methods[]=GET"
+HTTP_POST = "methods[]=POST"
+HTTP_DELETE = "methods[]=DELETE"
+HTTP_PUT = "methods[]=PUT"
+HTTP_PATCH = "methods[]=PATCH"
 
 # add service to kong
 kong-register-service:
 	@curl -i -X POST http://localhost:8001/services \
-	  --data ${KONG_DATA_CONFIG_SERVICE}
+	--data ${KONG_REGISTER_SERVICE_NAME} \
+	--data ${KONG_REGISTER_SERVICE_URL}
 
 # add route to service
-kong-register-service-route-get-list:
+kong-register-route-get-one:
 	@curl -i -X POST http://localhost:8001/services/${SERVICE}/routes \
-      --data ${KONG_DATA_CONFIG_ROUTE_GET_LIST}
+      	--data ${KONG_ROUTE_PATH_GET_ONE} \
+	--data ${HTTP_GET} \
+	--data ${IS_STRIP_PATH}
 
 # add route to service
-kong-register-service-route-get-single:
+kong-register-route-get-many:
 	@curl -i -X POST http://localhost:8001/services/${SERVICE}/routes \
-       --data ${KONG_DATA_CONFIG_ROUTE_GET_SINGLE}
+       	--data ${KONG_ROUTE_PATH_GET_MANY} \
+	--data ${HTTP_GET} \
+	--data ${IS_STRIP_PATH}
 
 # add route to service
-kong-register-service-route-post:
+kong-register-route-post:
 	@curl -i -X POST http://localhost:8001/services/${SERVICE}/routes \
-       --data ${KONG_DATA_CONFIG_ROUTE_POST}
+       	--data ${KONG_ROUTE_PATH_POST} \
+	--data ${HTTP_POST} \
+	--data ${IS_STRIP_PATH}
