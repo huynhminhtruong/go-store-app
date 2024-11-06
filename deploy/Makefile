@@ -1,10 +1,15 @@
 # global environments
-SERVICE=book-service
+# services
+SERVICE = book-service
 KONG_REGISTER_SERVICE_URL = "url=http://gateway:8081"
 KONG_REGISTER_SERVICE_NAME = "name=book-service"
+
+# endpoint urls
 KONG_ROUTE_PATH_GET_ONE = "paths[]=/v1/books"
 KONG_ROUTE_PATH_GET_MANY = "paths[]=/v1/books/{book_id}"
 KONG_ROUTE_PATH_POST = "paths[]=/v1/books"
+
+# options
 IS_STRIP_PATH = "strip_path=false"
 HTTP_GET = "methods[]=GET"
 HTTP_POST = "methods[]=POST"
@@ -38,3 +43,12 @@ kong-register-route-post:
        	--data ${KONG_ROUTE_PATH_POST} \
 	--data ${HTTP_POST} \
 	--data ${IS_STRIP_PATH}
+
+# kong admin
+# get list of created services
+kong-admin-get-services:
+	@curl -i -X GET http://localhost:8001/services
+
+# get list of created routes of specific service
+kong-admin-get-routes:
+	@curl -i -X GET http://localhost:8001/services/${SERVICE}/routes
