@@ -10,3 +10,11 @@
 	path = go-store-gateway
 	url = https://github.com/huynhminhtruong/go-store-gateway.git
 	branch = main
+[submodule "go-store-order"]
+	path = go-store-order
+	url = https://github.com/huynhminhtruong/go-store-order.git
+	branch = main
+[submodule "go-store-shipping"]
+	path = go-store-shipping
+	url = https://github.com/huynhminhtruong/go-store-shipping.git
+	branch = main
