@@ -9,10 +9,37 @@ services:
       - "${DB_PORT:-5432}:5432"
     volumes:
       - db_data_dev:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
     networks:
       - app_network
     restart: always
 
+  kong:
+    image: kong:latest
+    environment:
+      KONG_DATABASE: "postgres"
+      KONG_PG_PORT: "5432"
+      KONG_PG_USER: "postgres"
+      KONG_PG_PASSWORD: "postgres"
+      KONG_PG_DATABASE: "kong"
+      KONG_ADMIN_LISTEN: "0.0.0.0:8001"        # admin api port
+      KONG_PROXY_LISTEN: "0.0.0.0:8000, 0.0.0.0:8443 http2 ssl" # proxy port
+    env_file:
+      - .env.${ENV}
+    container_name: "${KONG_GATEWAY_CONTAINER_NAME:-kong_container}"
+    ports:
+      - "${KONG_HTTP_PORT}:8000" # proxy port
+      - "${KONG_HTTPS_PORT}:8443" # proxy port
+      - "${KONG_ADMIN_PORT}:8001" # admin port
+    volumes:
+      - ../go-store-kong/kong.yml:/kong.yml # mounting from go-store-kong to kong container
+    depends_on:
+      - db
+      - book
+    networks:
+      - app_network
+    restart: always
+  
   gateway:
     build:
       context: ../go-store-gateway
@@ -25,25 +52,6 @@ services:
     networks:
       - app_network
     restart: always
-
-  kong:
-    image: kong:latest
-    environment:
-      KONG_ADMIN_LISTEN: "0.0.0.0:8001"        # Cổng cho Admin API
-      KONG_PROXY_LISTEN: "0.0.0.0:8000, 0.0.0.0:8443 ssl" # Cổng cho proxy
-    env_file:
-      - .env.${ENV}
-    container_name: "${KONG_GATEWAY_CONTAINER_NAME:-kong_container}"
-    ports:
-      - "${KONG_HTTP_PORT}:8000" # proxy port
-      - "${KONG_HTTPS_PORT}:8443" # proxy port
-      - "${KONG_ADMIN_PORT}:8001" # admin port
-    volumes:
-      - ./kong.yml:/kong.yml
-    depends_on:
-      - book
-    networks:
-      - app_network
 
   book:
     build:

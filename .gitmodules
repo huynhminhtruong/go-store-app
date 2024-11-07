@@ -1,9 +1,12 @@
-[submodule "go-store-gateway"]
-	path = go-store-gateway
-	url = https://github.com/huynhminhtruong/go-store-gateway.git
 [submodule "go-store-services"]
 	path = go-store-services
 	url = https://github.com/huynhminhtruong/go-store-services.git
+	branch = main
 [submodule "go-store-kong"]
 	path = go-store-kong
 	url = https://github.com/huynhminhtruong/go-store-kong.git
+	branch = main
+[submodule "go-store-gateway"]
+	path = go-store-gateway
+	url = https://github.com/huynhminhtruong/go-store-gateway.git
+	branch = main

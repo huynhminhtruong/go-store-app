@@ -8,5 +8,4 @@ services:
         paths:
           - /book
         protocols:
-          - http
-          - https
+          - grpc
