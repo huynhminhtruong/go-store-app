@@ -8,9 +8,21 @@
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-gateway.git
 
-## 2. go-store-service
+## 2. go-store-kong
+
+- GITHUB: https://github.com/huynhminhtruong/go-store-kong.git
+
+## 3. go-store-service
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-services.git
+
+## 4. go-store-order
+
+- GITHUB: https://github.com/huynhminhtruong/go-store-order.git
+
+## 5. go-store-shipping
+
+- GITHUB: https://github.com/huynhminhtruong/go-store-shipping.git
 
 # Create sub-modules:
 
