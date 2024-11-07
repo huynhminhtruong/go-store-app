@@ -16,11 +16,19 @@
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-services.git
 
-## 4. go-store-order
+## 4. go-store-auth
+
+- GITHUB: https://github.com/huynhminhtruong/go-store-auth.git
+
+## 5. go-store-user
+
+- GITHUB: https://github.com/huynhminhtruong/go-store-user.git
+
+## 6. go-store-order(next stage)
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-order.git
 
-## 5. go-store-shipping
+## 7. go-store-shipping(next stage)
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-shipping.git
 
