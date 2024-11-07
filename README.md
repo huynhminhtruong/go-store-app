@@ -24,11 +24,11 @@
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-shipping.git
 
-## 6. go-store-auth(incoming)
+## 6. go-store-auth(next stage)
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-auth.git
 
-## 7. go-store-user(incoming)
+## 7. go-store-user(next stage)
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-user.git
 
