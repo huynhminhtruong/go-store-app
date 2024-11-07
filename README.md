@@ -16,21 +16,21 @@
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-services.git
 
-## 4. go-store-order
-
-- GITHUB: https://github.com/huynhminhtruong/go-store-order.git
-
-## 5. go-store-shipping
-
-- GITHUB: https://github.com/huynhminhtruong/go-store-shipping.git
-
-## 6. go-store-auth(next stage)
+## 4. go-store-auth
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-auth.git
 
-## 7. go-store-user(next stage)
+## 5. go-store-user
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-user.git
+
+## 6. go-store-order(next stage)
+
+- GITHUB: https://github.com/huynhminhtruong/go-store-order.git
+
+## 7. go-store-shipping(next stage)
+
+- GITHUB: https://github.com/huynhminhtruong/go-store-shipping.git
 
 # Create sub-modules:
 
