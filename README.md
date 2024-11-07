@@ -24,6 +24,14 @@
 
 - GITHUB: https://github.com/huynhminhtruong/go-store-shipping.git
 
+## 6. go-store-auth(incoming)
+
+- GITHUB: https://github.com/huynhminhtruong/go-store-auth.git
+
+## 7. go-store-user(incoming)
+
+- GITHUB: https://github.com/huynhminhtruong/go-store-user.git
+
 # Create sub-modules:
 
 Để quản lý các repository `gateway service` và `book service` như submodule trong một repository chung, bạn có thể thực hiện theo các bước sau:
