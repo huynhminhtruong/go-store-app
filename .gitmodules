@@ -18,3 +18,11 @@
 	path = go-store-shipping
 	url = https://github.com/huynhminhtruong/go-store-shipping.git
 	branch = main
+[submodule "go-store-auth"]
+	path = go-store-auth
+	url = https://github.com/huynhminhtruong/go-store-auth.git
+	branch = main
+[submodule "go-store-user"]
+	path = go-store-user
+	url = https://github.com/huynhminhtruong/go-store-user.git
+	branch = main
