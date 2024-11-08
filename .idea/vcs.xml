@@ -4,6 +4,8 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/go-store-gateway" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/go-store-kong" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/go-store-order" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/go-store-services" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/go-store-shipping" vcs="Git" />
   </component>
 </project>
