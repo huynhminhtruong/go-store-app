@@ -35,7 +35,6 @@ services:
       - ../go-store-kong/kong.yml:/kong.yml # mounting from go-store-kong to kong container
     depends_on:
       - db
-      - book
     networks:
       - app_network
     restart: always
@@ -64,6 +63,21 @@ services:
       - db
     ports:
       - "${BOOK_PORT:-8082}:8082"
+    networks:
+      - app_network
+    restart: always
+  
+  user:
+    build:
+      context: ../go-store-user
+      dockerfile: Dockerfile
+    env_file:
+      - .env.${ENV}
+    container_name: "${USER_CONTAINER_NAME:-user_container}"
+    depends_on:
+      - db
+    ports:
+      - "${USER_PORT:-8083}:8083"
     networks:
       - app_network
     restart: always
