@@ -93,3 +93,37 @@ chmod 644 <file_or_dir>
 
 - Kiểm tra nguyên nhân dừng của Container(nếu container không chạy):
   docker inspect <container_name_or_id> --format='{{.State.ExitCode}}'
+
+## Sử dụng các lệnh này sẽ giúp giải phóng dung lượng lưu trữ trên hệ thống Docker của bạn
+
+  - Docker cung cấp lệnh `docker builder prune` để xóa các file và lớp build (build layers) không còn được sử dụng nhằm tiết kiệm dung lượng
+  
+  - Đây là các lệnh phổ biến để quản lý và xóa các file hoặc layer build không cần thiết:
+  
+  1. **Xóa các layer build không dùng:**
+     ```bash
+     docker builder prune
+     ```
+  
+     - Lệnh này sẽ xóa các lớp build (cache layers) không còn được sử dụng bởi bất kỳ image nào. Bạn có thể thêm tùy chọn `-f` (force) để tránh yêu cầu xác nhận
+  
+  2. **Xóa image không còn sử dụng (dangling images):**
+     ```bash
+     docker image prune
+     ```
+  
+     - Lệnh này sẽ xóa các image không có tag (dangling images) mà không liên kết với container nào
+  
+  3. **Xóa toàn bộ các image không dùng:**
+     ```bash
+     docker image prune -a
+     ```
+  
+     - Tùy chọn `-a` sẽ xóa tất cả các image không được sử dụng bởi container nào, bao gồm cả các image có tag
+  
+  4. **Xóa tất cả các dữ liệu không sử dụng (volumes, images, containers, networks):**
+     ```bash
+     docker system prune
+     ```
+  
+     - Lệnh này sẽ xóa tất cả các volumes, images, containers, và networks không được sử dụng. Bạn có thể thêm `-a` để xóa thêm cả các image chưa chạy
